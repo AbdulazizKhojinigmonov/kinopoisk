@@ -37,7 +37,7 @@ function themeChange() {
 async function findMovie() {
   const loader = document.querySelector(".loader");
   loader.style.display = "block";
-  const data = { apikey: "821e61eb", t: search.value };
+  const data = { apikey: "23d64680", t: search.value };
   const response = await sendRequest("https://www.omdbapi.com", "GET", data);
   loader.style.display = "none";
   console.log(response);
@@ -80,7 +80,7 @@ function showMovie(data) {
 }
 
 async function findSimilarMovies() {
-  const data = { apikey: "821e61eb", s: search.value };
+  const data = { apikey: "23d64680", s: search.value };
   const response = await sendRequest("https://www.omdbapi.com", "GET", data);
   console.log(response);
   movieTitle[1].style.display = "block";
