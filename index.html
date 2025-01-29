@@ -1,60 +1,59 @@
 <!DOCTYPE html>
-<html lang="ru">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam-layout</title>
+    <title>Kinopoisk</title>
     <link rel="stylesheet" href="./style.css">
+    <script src="./main.js" defer></script>
 </head>
+<body>
+  <header class="rounded">
+<h1>Кинопоиск</h1>
+<nav class="darkBg">
+    <a href="./index.html" class="active">Главная</a>
+    <a href="./favorite.html">Избранное</a>
+</nav>
+<img src="./img/themeChange.svg" alt="themeChange" id="themeChange">
+  </header>
 
-<body class="dark">  
-    <header class="rounded">
-        <h1> Kinopoisk</h1>
-        <nav class="darkBg">
-            <a href="/" class="active">Main</a>
-            <a href="#"> Favorites</a>
-        </nav>
-        <img src="./img/img/themeChange.svg" alt="themeChange" id="themeChange">
-    </header>
+  <div class="search rounded">
+    <input type="search" id="search">
+    <button class="darkBg" id="searchBtn">Поиск</button>
+  </div>
+  <div class="loader rounded"></div>
 
-    <div class="search rounded">
-        <input type="search" id="search">
-        <button class="darkBg" id="searchBtn">Search</button>
-    </div>
-    <div class="loader rounded"></div>
-
-    <div class="main rounded">
-        <div class="movieTitle darkBg">Mib</div>
-        <div class="movie darkBg">
-            <div class="movieImg"></div>
-            <div class="movieDescription">
-                <div class="desc">
-                    <p>dasdsa</p>
-                    <p>312312</p>
-                </div>
-                <div class="desc">
-                    <p>dasdsa</p>
-                    <p>312312</p>
-                </div>
-                <div class="desc">
-                    <p>dasdsa</p>
-                    <p>312312</p>
-                </div>
+  <div class="main rounded">
+    <div class="movieTitle darkBg">MIB</div>
+    <div class="movie darkBg">
+        <div class="movieImg"></div>
+        <div class="movieDescription">
+            <div class="desc">
+                <p>dasdsa</p>
+                <p>312312</p>
             </div>
-        </div>
-        <div class="movieTitle darkBg">Similar movies found: 6</div>
-        <div class="similarMovies darkBg">
-            <div class="similarCard">
-                <div class="Similar"></div>
-                <p>Frontend 59</p>
+            <div class="desc">
+                <p>dasdsa</p>
+                <p>312312</p>
+            </div>
+            <div class="desc">
+                <p>dasdsa</p>
+                <p>312312</p>
+            </div>
+            <div class="desc">
+                <p>dasdsa</p>
+                <p>312312</p>
             </div>
         </div>
     </div>
+    <div class="movieTitle darkBg">Найдено похожих фильмов: 6</div>
+    <div class="similarMovies darkBg">
+        <div class="similarCard">
+            
+        </div>
+    </div>
+</div>
+    
 
-
-
-    <script src="./main.js"></script>
 </body>
-
-</html>   
+</html>
