@@ -41,6 +41,7 @@ async function findMovie() {
   const response = await sendRequest("https://www.omdbapi.com", "GET", data);
   loader.style.display = "none";
   console.log(response);
+
   if (response.Response === "False") {
     main.style.display = "block";
     movie.style.display = "none";
@@ -98,14 +99,75 @@ function showSimilarMovies(movies) {
     if(movie.Poster != "N/A") {
       let similarMovie = `
       <div class="similarCard" style = "background-image:url(${movie.Poster})">
-        <div class="similar" data-poster = ${movie.Poster} data-title = ${movie.Title}></div>
+        <div class="similar" onclick={addSave(event)}
+         data-poster = ${movie.Poster} 
+         data-title = ${movie.Title}
+         data-imdbId=${movie.imdbID}
+         ></div>
         <p>${movie.Title}</p>
       </div>`;
       similarMovies.innerHTML += similarMovie;
-      // similarMovie.style.backgroundImage = `url(${movie.Poster})`;
+      
     }
   } 
 }
+ function addSave(event) {
+  const target = event.currentTarget;
+  
+  const movieDate ={
+    title : target.getAttribute("data-title") ,
+    poster: target.getAttribute("data-poster") , 
+    imdbID: target.getAttribute("data-imdbID"),
+    };
+    let favs = JSON.parse(localStorage.getItem("favs")) || [];
+    let movieIndex = favs.findIndex((movie)=> movie.imdbID == movieDate.imdbID)
+    if (movieIndex > -1) {
+      favs.splice(movieIndex, 1)
+      target.classList.remove("star");
+    }else{
+      favs.push(movieDate);
+      target.classList.add("star");
+    }
+
+   localStorage.setItem("favs", JSON.stringify([movieDate]));
+   showFavorites(local)
+    
+ }
+ function showFavorites(movies) {
+  const movie = document.querySelector(".similarMovies")
+  movie.innerHTML= " "
+  for (let i = 0; i< elem.length; i++) {
+    let movie = movies[i]
+    
+    if(movie.Poster != "N/A") {
+  const movieCard = `
+      <div class="movieCard" style = "background-image:url(${movie.Poster})">
+        <div class="movie" onclick={addSave(event)}
+         data-poster = ${movie.Poster} 
+         data-title = ${movie.Title}
+         data-imdbId=${movie.imdbID}
+         ></div>
+        <p>${movie.Title}</p>
+      </div>`;
+      similarMovies.innerHTML += similarMovie;
+      console.log(response);
+    } 
+     }
+     
+ }
+ function updateFavoritesUI() {
+  let favorites = JSON.parse(localStorage.getItem("favs")) || [];
+  document.querySelectorAll(".similar").forEach(card => {
+    let imdbID = card.getAttribute("data-imdbId");
+    if (favorites.some(movie => movie.imdbID === imdbID)) {
+      card.classList.add("star");
+    } else {
+      card.classList.remove("star");
+    }
+  });
+}
+
+
 async function sendRequest(url, method, data) {
   if (method == "POST") {
     let response = await fetch(url, {
